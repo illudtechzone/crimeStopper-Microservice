@@ -1,0 +1,104 @@
+{
+    "name": "Complaint",
+    "fields": [
+        {
+            "fieldName": "userId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "subject",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "timeOfIncident",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "media",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "SEEN,ACTION_TAKEN"
+        },
+        {
+            "fieldName": "noOfLikes",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "noOfDislikes",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userResponses",
+            "otherEntityName": "userResponse",
+            "otherEntityRelationshipName": "complaint"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comments",
+            "otherEntityName": "comment",
+            "otherEntityRelationshipName": "complaint"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "attachments",
+            "otherEntityName": "media",
+            "otherEntityRelationshipName": "complaint"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "complaint"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "linkedComplaints",
+            "otherEntityName": "complaint",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "complaints",
+            "relationshipName": "hashtags",
+            "otherEntityName": "hashtag",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190111085502",
+    "entityTableName": "complaint",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "crimestopper",
+    "applications": "*",
+    "microserviceName": "crimestopper"
+}

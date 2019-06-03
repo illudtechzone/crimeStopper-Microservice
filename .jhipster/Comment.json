@@ -1,0 +1,55 @@
+{
+    "name": "Comment",
+    "fields": [
+        {
+            "fieldName": "userId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "noOfLikes",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "noOfDislikes",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "noOfReplies",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "complaint",
+            "otherEntityName": "complaint",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "replies",
+            "otherEntityName": "reply",
+            "otherEntityRelationshipName": "comment"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userResponses",
+            "otherEntityName": "userResponse",
+            "otherEntityRelationshipName": "comment"
+        }
+    ],
+    "changelogDate": "20190111085504",
+    "entityTableName": "comment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "crimestopper",
+    "applications": "*",
+    "microserviceName": "crimestopper"
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Hashtag",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "count",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "complaints",
+            "otherEntityName": "complaint",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "hashtags"
+        }
+    ],
+    "changelogDate": "20190209191203",
+    "entityTableName": "hashtag",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "crimestopper",
+    "applications": "*",
+    "microserviceName": "crimestopper"
+}

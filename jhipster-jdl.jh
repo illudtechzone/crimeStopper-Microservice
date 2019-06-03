@@ -1,0 +1,96 @@
+entity Complaint 
+{
+	userId String, 
+	subject String,
+    description String,
+    time Instant,
+    timeOfIncident Instant,
+    media Blob,
+    status Status,
+    noOfLikes Long,
+    noOfDislikes Long
+        
+}
+
+entity UserResponse
+{
+	userId Long,
+    flag Flag
+}
+
+entity Comment
+{
+	userId Long,
+	description String,
+	noOfLikes Long,
+	noOfDislikes Long,
+	noOfReplies Long
+
+}
+
+entity Reply
+{
+	userId Long,
+	noOfLikes Long,
+	noOfDislikes Long
+
+}
+
+entity Location
+{
+	
+ 	latitude Double ,
+    longitude Double
+    
+}
+ 
+entity Department
+{
+	name String
+}
+
+entity Media
+{
+	file Blob
+}
+
+entity Hashtag
+{
+	name String
+	count Long
+}
+
+enum Status
+{
+	SEEN, ACTION_TAKEN
+}
+
+enum Flag
+{
+	LIKE, DISLIKE
+}
+
+relationship ManyToOne
+{
+	Complaint{location} to Location    
+}
+
+relationship OneToMany
+{
+	Complaint{userResponses} to UserResponse
+	Complaint{comments} to Comment
+	Comment{replies} to Reply
+	Comment{userResponses} to UserResponse
+	Reply{UserResponses} to UserResponse 
+	Complaint{attachments} to Media{complaint}
+}
+relationship ManyToMany
+{
+	Complaint{department} to Department{complaint }
+    Complaint{linkedComplaints} to Complaint
+	Complaint{hashtags} to Hashtag{complaints}
+}
+ 
+dto * with mapstruct
+service all with serviceImpl 
+paginate * with pagination

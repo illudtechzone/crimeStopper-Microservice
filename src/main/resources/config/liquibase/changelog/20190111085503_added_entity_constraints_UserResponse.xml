@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity UserResponse.
+    -->
+    <changeSet id="20190111085503-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="complaint_id"
+                                 baseTableName="user_response"
+                                 constraintName="fk_user_response_complaint_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="complaint"/>
+
+        <addForeignKeyConstraint baseColumnNames="comment_id"
+                                 baseTableName="user_response"
+                                 constraintName="fk_user_response_comment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comment"/>
+
+        <addForeignKeyConstraint baseColumnNames="reply_id"
+                                 baseTableName="user_response"
+                                 constraintName="fk_user_response_reply_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reply"/>
+
+    </changeSet>
+</databaseChangeLog>

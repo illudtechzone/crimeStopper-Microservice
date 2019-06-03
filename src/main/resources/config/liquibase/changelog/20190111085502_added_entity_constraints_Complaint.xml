@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Complaint.
+    -->
+    <changeSet id="20190111085502-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="complaint"
+                                 constraintName="fk_complaint_location_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+
+        <addForeignKeyConstraint baseColumnNames="complaints_id"
+                                 baseTableName="complaint_department"
+                                 constraintName="fk_complaint_department_complaints_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="complaint"/>
+        <addForeignKeyConstraint baseColumnNames="departments_id"
+                                 baseTableName="complaint_department"
+                                 constraintName="fk_complaint_department_departments_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department"/>
+        
+        <addForeignKeyConstraint baseColumnNames="complaints_id"
+                                 baseTableName="complaint_linked_complaints"
+                                 constraintName="fk_complaint_linked_complaints_complaints_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="complaint"/>
+        <addForeignKeyConstraint baseColumnNames="linked_complaints_id"
+                                 baseTableName="complaint_linked_complaints"
+                                 constraintName="fk_complaint_linked_complaints_linked_complaints_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="complaint"/>
+        
+    </changeSet>
+</databaseChangeLog>

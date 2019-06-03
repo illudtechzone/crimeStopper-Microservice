@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Complaint.
+    -->
+    <changeSet id="20190111085502-1" author="jhipster">
+        <createTable tableName="complaint">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="subject" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_time" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="time_of_incident" type="datetime">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="media" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="media_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="no_of_likes" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="no_of_dislikes" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="location_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="complaint" columnName="jhi_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="complaint" columnName="time_of_incident" columnDataType="datetime"/>
+        
+        <createTable tableName="complaint_department">
+            <column name="departments_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complaints_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="complaints_id, departments_id" tableName="complaint_department"/>
+        
+        <createTable tableName="complaint_linked_complaints">
+            <column name="linked_complaints_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complaints_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="complaints_id, linked_complaints_id" tableName="complaint_linked_complaints"/>
+        
+       
+         <createTable tableName="complaint_hashtags">
+            <column name="hashtags_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="complaints_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="complaints_id, hashtags_id" tableName="complaint_hashtags"/> 
+        
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>
