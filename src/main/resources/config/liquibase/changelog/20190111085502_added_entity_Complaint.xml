@@ -7,7 +7,7 @@
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <property name="now" value="now()" dbms="h2"/>
-
+    
     <property name="now" value="now()" dbms="mysql"/>
     <property name="autoIncrement" value="true"/>
 
@@ -22,7 +22,7 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="bigint">
+            <column name="user_id" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -71,39 +71,37 @@
         <dropDefaultValue tableName="complaint" columnName="time_of_incident" columnDataType="datetime"/>
         
         <createTable tableName="complaint_department">
-            <column name="departments_id" type="bigint">
+            <column name="department_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="complaints_id" type="bigint">
+            <column name="complaint_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="complaints_id, departments_id" tableName="complaint_department"/>
+        <addPrimaryKey columnNames="complaint_id, department_id" tableName="complaint_department"/>
         
         <createTable tableName="complaint_linked_complaints">
             <column name="linked_complaints_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="complaints_id" type="bigint">
+            <column name="complaint_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="complaints_id, linked_complaints_id" tableName="complaint_linked_complaints"/>
+        <addPrimaryKey columnNames="complaint_id, linked_complaints_id" tableName="complaint_linked_complaints"/>
         
-       
-         <createTable tableName="complaint_hashtags">
+        <createTable tableName="complaint_hashtags">
             <column name="hashtags_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="complaints_id" type="bigint">
+            <column name="complaint_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="complaints_id, hashtags_id" tableName="complaint_hashtags"/> 
-        
+        <addPrimaryKey columnNames="complaint_id, hashtags_id" tableName="complaint_hashtags"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

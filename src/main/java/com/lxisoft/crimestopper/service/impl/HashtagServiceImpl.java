@@ -1,21 +1,19 @@
 package com.lxisoft.crimestopper.service.impl;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
+import com.lxisoft.crimestopper.service.HashtagService;
+import com.lxisoft.crimestopper.domain.Hashtag;
+import com.lxisoft.crimestopper.repository.HashtagRepository;
+import com.lxisoft.crimestopper.service.dto.HashtagDTO;
+import com.lxisoft.crimestopper.service.mapper.HashtagMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.crimestopper.domain.Hashtag;
-import com.lxisoft.crimestopper.repository.HashtagRepository;
-import com.lxisoft.crimestopper.service.HashtagService;
-import com.lxisoft.crimestopper.service.dto.HashtagDTO;
-import com.lxisoft.crimestopper.service.mapper.HashtagMapper;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Hashtag.
@@ -85,29 +83,7 @@ public class HashtagServiceImpl implements HashtagService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete Hashtag : {}", id);    
+        log.debug("Request to delete Hashtag : {}", id);
         hashtagRepository.deleteById(id);
     }
-    
-    @Override
-    public List<HashtagDTO> findTrendingHashtags()
-    {
-    	  log.debug("Request to get trending  Hashtags : {}"); 
-    	  List<Hashtag>list=hashtagRepository.findAll();
-    	   Long totalCount=0L;
-    	 for(Hashtag ht:list)
-    	 {
-    		 
-    		 totalCount=totalCount+ht.getCount();
-    	 }
-    	 Long avg=totalCount/list.size();
-    	 Pageable pageable=null;
-    	 List<HashtagDTO> result=hashtagRepository.findAllHashtagByCountGreaterThan(avg,pageable).map(hashtagMapper::toDto).getContent();
-    	 System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>)())()()()"+result);
-    	
-    	 if(result.size()>2)
-    	 Collections.sort(result);
-    	  return result;
-    }
-    
 }

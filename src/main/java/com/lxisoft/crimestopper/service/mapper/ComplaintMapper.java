@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Complaint and its DTO ComplaintDTO.
  */
-@Mapper(componentModel = "spring", uses = {LocationMapper.class, DepartmentMapper.class})
+@Mapper(componentModel = "spring", uses = {LocationMapper.class, DepartmentMapper.class, HashtagMapper.class})
 public interface ComplaintMapper extends EntityMapper<ComplaintDTO, Complaint> {
 
     @Mapping(source = "location.id", target = "locationId")

@@ -1,5 +1,4 @@
 package com.lxisoft.crimestopper.service.dto;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,6 +10,7 @@ public class DepartmentDTO implements Serializable {
     private Long id;
 
     private String name;
+
 
     public Long getId() {
         return id;

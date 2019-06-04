@@ -14,20 +14,20 @@
                                  referencedColumnNames="id"
                                  referencedTableName="location"/>
 
-        <addForeignKeyConstraint baseColumnNames="complaints_id"
+        <addForeignKeyConstraint baseColumnNames="complaint_id"
                                  baseTableName="complaint_department"
-                                 constraintName="fk_complaint_department_complaints_id"
+                                 constraintName="fk_complaint_department_complaint_id"
                                  referencedColumnNames="id"
                                  referencedTableName="complaint"/>
-        <addForeignKeyConstraint baseColumnNames="departments_id"
+        <addForeignKeyConstraint baseColumnNames="department_id"
                                  baseTableName="complaint_department"
-                                 constraintName="fk_complaint_department_departments_id"
+                                 constraintName="fk_complaint_department_department_id"
                                  referencedColumnNames="id"
                                  referencedTableName="department"/>
         
-        <addForeignKeyConstraint baseColumnNames="complaints_id"
+        <addForeignKeyConstraint baseColumnNames="complaint_id"
                                  baseTableName="complaint_linked_complaints"
-                                 constraintName="fk_complaint_linked_complaints_complaints_id"
+                                 constraintName="fk_complaint_linked_complaints_complaint_id"
                                  referencedColumnNames="id"
                                  referencedTableName="complaint"/>
         <addForeignKeyConstraint baseColumnNames="linked_complaints_id"
@@ -35,6 +35,17 @@
                                  constraintName="fk_complaint_linked_complaints_linked_complaints_id"
                                  referencedColumnNames="id"
                                  referencedTableName="complaint"/>
+        
+        <addForeignKeyConstraint baseColumnNames="complaint_id"
+                                 baseTableName="complaint_hashtags"
+                                 constraintName="fk_complaint_hashtags_complaint_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="complaint"/>
+        <addForeignKeyConstraint baseColumnNames="hashtags_id"
+                                 baseTableName="complaint_hashtags"
+                                 constraintName="fk_complaint_hashtags_hashtags_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hashtag"/>
         
     </changeSet>
 </databaseChangeLog>

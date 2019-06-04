@@ -1,5 +1,4 @@
 package com.lxisoft.crimestopper.service.dto;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,25 +9,16 @@ public class CommentDTO implements Serializable {
 
     private Long id;
 
-    private Long userId;
-    
-    private String userName;
+    private String userId;
 
-    public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	private String description;
+    private String description;
 
     private Long noOfLikes;
 
     private Long noOfDislikes;
 
     private Long noOfReplies;
+
 
     private Long complaintId;
 
@@ -40,11 +30,11 @@ public class CommentDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -113,7 +103,7 @@ public class CommentDTO implements Serializable {
     public String toString() {
         return "CommentDTO{" +
             "id=" + getId() +
-            ", userId=" + getUserId() +
+            ", userId='" + getUserId() + "'" +
             ", description='" + getDescription() + "'" +
             ", noOfLikes=" + getNoOfLikes() +
             ", noOfDislikes=" + getNoOfDislikes() +
@@ -121,5 +111,4 @@ public class CommentDTO implements Serializable {
             ", complaint=" + getComplaintId() +
             "}";
     }
-    
 }

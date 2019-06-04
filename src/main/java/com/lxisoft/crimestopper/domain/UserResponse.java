@@ -1,5 +1,6 @@
 package com.lxisoft.crimestopper.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,13 +18,13 @@ import com.lxisoft.crimestopper.domain.enumeration.Flag;
 public class UserResponse implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "flag")
@@ -50,16 +51,16 @@ public class UserResponse implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public UserResponse userId(Long userId) {
+    public UserResponse userId(String userId) {
         this.userId = userId;
         return this;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -140,7 +141,7 @@ public class UserResponse implements Serializable {
     public String toString() {
         return "UserResponse{" +
             "id=" + getId() +
-            ", userId=" + getUserId() +
+            ", userId='" + getUserId() + "'" +
             ", flag='" + getFlag() + "'" +
             "}";
     }

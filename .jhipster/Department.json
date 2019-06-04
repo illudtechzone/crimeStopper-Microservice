@@ -9,10 +9,11 @@
     "relationships": [
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "complaint",
             "otherEntityName": "complaint",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "department"
+            "otherEntityRelationshipName": "department",
+            "relationshipName": "complaint",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20190111085507",

@@ -22,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -42,8 +43,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CrimestopperApp.class)
 public class ReplyResourceIntTest {
 
-    private static final Long DEFAULT_USER_ID = 1L;
-    private static final Long UPDATED_USER_ID = 2L;
+    private static final String DEFAULT_USER_ID = "AAAAAAAAAA";
+    private static final String UPDATED_USER_ID = "BBBBBBBBBB";
 
     private static final Long DEFAULT_NO_OF_LIKES = 1L;
     private static final Long UPDATED_NO_OF_LIKES = 2L;
@@ -72,6 +73,9 @@ public class ReplyResourceIntTest {
     @Autowired
     private EntityManager em;
 
+    @Autowired
+    private Validator validator;
+
     private MockMvc restReplyMockMvc;
 
     private Reply reply;
@@ -84,7 +88,8 @@ public class ReplyResourceIntTest {
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
             .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     /**
@@ -158,7 +163,7 @@ public class ReplyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(reply.getId().intValue())))
-            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.intValue())))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
             .andExpect(jsonPath("$.[*].noOfLikes").value(hasItem(DEFAULT_NO_OF_LIKES.intValue())))
             .andExpect(jsonPath("$.[*].noOfDislikes").value(hasItem(DEFAULT_NO_OF_DISLIKES.intValue())));
     }
@@ -174,7 +179,7 @@ public class ReplyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(reply.getId().intValue()))
-            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.intValue()))
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
             .andExpect(jsonPath("$.noOfLikes").value(DEFAULT_NO_OF_LIKES.intValue()))
             .andExpect(jsonPath("$.noOfDislikes").value(DEFAULT_NO_OF_DISLIKES.intValue()));
     }
@@ -246,7 +251,7 @@ public class ReplyResourceIntTest {
 
         int databaseSizeBeforeDelete = replyRepository.findAll().size();
 
-        // Get the reply
+        // Delete the reply
         restReplyMockMvc.perform(delete("/api/replies/{id}", reply.getId())
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());

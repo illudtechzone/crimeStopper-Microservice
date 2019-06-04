@@ -1,5 +1,6 @@
 package com.lxisoft.crimestopper.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -18,13 +19,13 @@ import java.util.Objects;
 public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Column(name = "description")
     private String description;
@@ -55,16 +56,16 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public Comment userId(Long userId) {
+    public Comment userId(String userId) {
         this.userId = userId;
         return this;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -208,7 +209,7 @@ public class Comment implements Serializable {
     public String toString() {
         return "Comment{" +
             "id=" + getId() +
-            ", userId=" + getUserId() +
+            ", userId='" + getUserId() + "'" +
             ", description='" + getDescription() + "'" +
             ", noOfLikes=" + getNoOfLikes() +
             ", noOfDislikes=" + getNoOfDislikes() +

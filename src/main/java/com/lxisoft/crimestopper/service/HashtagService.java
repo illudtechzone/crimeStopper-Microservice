@@ -1,12 +1,11 @@
 package com.lxisoft.crimestopper.service;
 
-import java.util.List;
-import java.util.Optional;
+import com.lxisoft.crimestopper.service.dto.HashtagDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.lxisoft.crimestopper.service.dto.HashtagDTO;
+import java.util.Optional;
 
 /**
  * Service Interface for managing Hashtag.
@@ -44,6 +43,4 @@ public interface HashtagService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-	List<HashtagDTO> findTrendingHashtags();
 }

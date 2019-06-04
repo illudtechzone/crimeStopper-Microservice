@@ -3,7 +3,7 @@
     "fields": [
         {
             "fieldName": "userId",
-            "fieldType": "Long"
+            "fieldType": "String"
         },
         {
             "fieldName": "subject",
@@ -43,50 +43,50 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "userResponses",
             "otherEntityName": "userResponse",
-            "otherEntityRelationshipName": "complaint"
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "userResponses"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "comments",
             "otherEntityName": "comment",
-            "otherEntityRelationshipName": "complaint"
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "comments"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "attachments",
             "otherEntityName": "media",
-            "otherEntityRelationshipName": "complaint"
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "attachments"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "location",
             "otherEntityName": "location",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "complaint"
+            "otherEntityRelationshipName": "complaint",
+            "relationshipName": "location",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityName": "department",
             "otherEntityRelationshipName": "complaint",
             "relationshipName": "department",
-            "otherEntityName": "department",
             "otherEntityField": "id",
             "ownerSide": true
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityName": "complaint",
             "otherEntityRelationshipName": "complaint",
             "relationshipName": "linkedComplaints",
-            "otherEntityName": "complaint",
             "otherEntityField": "id",
             "ownerSide": true
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityName": "hashtag",
             "otherEntityRelationshipName": "complaints",
             "relationshipName": "hashtags",
-            "otherEntityName": "hashtag",
             "otherEntityField": "id",
             "ownerSide": true
         }

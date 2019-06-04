@@ -13,10 +13,11 @@
     "relationships": [
         {
             "relationshipType": "many-to-many",
-            "relationshipName": "complaints",
             "otherEntityName": "complaint",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "hashtags"
+            "otherEntityRelationshipName": "hashtags",
+            "relationshipName": "complaints",
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
     "changelogDate": "20190209191203",

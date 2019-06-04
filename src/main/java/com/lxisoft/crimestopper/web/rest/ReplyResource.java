@@ -1,6 +1,4 @@
 package com.lxisoft.crimestopper.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.lxisoft.crimestopper.service.ReplyService;
 import com.lxisoft.crimestopper.web.rest.errors.BadRequestAlertException;
 import com.lxisoft.crimestopper.web.rest.util.HeaderUtil;
@@ -47,7 +45,6 @@ public class ReplyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/replies")
-    @Timed
     public ResponseEntity<ReplyDTO> createReply(@RequestBody ReplyDTO replyDTO) throws URISyntaxException {
         log.debug("REST request to save Reply : {}", replyDTO);
         if (replyDTO.getId() != null) {
@@ -69,7 +66,6 @@ public class ReplyResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/replies")
-    @Timed
     public ResponseEntity<ReplyDTO> updateReply(@RequestBody ReplyDTO replyDTO) throws URISyntaxException {
         log.debug("REST request to update Reply : {}", replyDTO);
         if (replyDTO.getId() == null) {
@@ -88,7 +84,6 @@ public class ReplyResource {
      * @return the ResponseEntity with status 200 (OK) and the list of replies in body
      */
     @GetMapping("/replies")
-    @Timed
     public ResponseEntity<List<ReplyDTO>> getAllReplies(Pageable pageable) {
         log.debug("REST request to get a page of Replies");
         Page<ReplyDTO> page = replyService.findAll(pageable);
@@ -103,7 +98,6 @@ public class ReplyResource {
      * @return the ResponseEntity with status 200 (OK) and with body the replyDTO, or with status 404 (Not Found)
      */
     @GetMapping("/replies/{id}")
-    @Timed
     public ResponseEntity<ReplyDTO> getReply(@PathVariable Long id) {
         log.debug("REST request to get Reply : {}", id);
         Optional<ReplyDTO> replyDTO = replyService.findOne(id);
@@ -117,7 +111,6 @@ public class ReplyResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/replies/{id}")
-    @Timed
     public ResponseEntity<Void> deleteReply(@PathVariable Long id) {
         log.debug("REST request to delete Reply : {}", id);
         replyService.delete(id);

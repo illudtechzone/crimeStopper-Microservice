@@ -14,13 +14,13 @@ entity Complaint
 
 entity UserResponse
 {
-	userId Long,
+	userId String,
     flag Flag
 }
 
 entity Comment
 {
-	userId Long,
+	userId String,
 	description String,
 	noOfLikes Long,
 	noOfDislikes Long,
@@ -30,7 +30,7 @@ entity Comment
 
 entity Reply
 {
-	userId Long,
+	userId String,
 	noOfLikes Long,
 	noOfDislikes Long
 

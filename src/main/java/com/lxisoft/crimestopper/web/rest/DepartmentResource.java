@@ -1,6 +1,4 @@
 package com.lxisoft.crimestopper.web.rest;
-
-import com.codahale.metrics.annotation.Timed;
 import com.lxisoft.crimestopper.service.DepartmentService;
 import com.lxisoft.crimestopper.web.rest.errors.BadRequestAlertException;
 import com.lxisoft.crimestopper.web.rest.util.HeaderUtil;
@@ -47,7 +45,6 @@ public class DepartmentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/departments")
-    @Timed
     public ResponseEntity<DepartmentDTO> createDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         log.debug("REST request to save Department : {}", departmentDTO);
         if (departmentDTO.getId() != null) {
@@ -69,7 +66,6 @@ public class DepartmentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/departments")
-    @Timed
     public ResponseEntity<DepartmentDTO> updateDepartment(@RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         log.debug("REST request to update Department : {}", departmentDTO);
         if (departmentDTO.getId() == null) {
@@ -88,7 +84,6 @@ public class DepartmentResource {
      * @return the ResponseEntity with status 200 (OK) and the list of departments in body
      */
     @GetMapping("/departments")
-    @Timed
     public ResponseEntity<List<DepartmentDTO>> getAllDepartments(Pageable pageable) {
         log.debug("REST request to get a page of Departments");
         Page<DepartmentDTO> page = departmentService.findAll(pageable);
@@ -103,7 +98,6 @@ public class DepartmentResource {
      * @return the ResponseEntity with status 200 (OK) and with body the departmentDTO, or with status 404 (Not Found)
      */
     @GetMapping("/departments/{id}")
-    @Timed
     public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable Long id) {
         log.debug("REST request to get Department : {}", id);
         Optional<DepartmentDTO> departmentDTO = departmentService.findOne(id);
@@ -117,7 +111,6 @@ public class DepartmentResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/departments/{id}")
-    @Timed
     public ResponseEntity<Void> deleteDepartment(@PathVariable Long id) {
         log.debug("REST request to delete Department : {}", id);
         departmentService.delete(id);

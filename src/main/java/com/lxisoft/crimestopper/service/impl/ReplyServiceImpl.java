@@ -1,19 +1,19 @@
 package com.lxisoft.crimestopper.service.impl;
 
-import java.util.Optional;
-
+import com.lxisoft.crimestopper.service.ReplyService;
+import com.lxisoft.crimestopper.domain.Reply;
+import com.lxisoft.crimestopper.repository.ReplyRepository;
+import com.lxisoft.crimestopper.service.dto.ReplyDTO;
+import com.lxisoft.crimestopper.service.mapper.ReplyMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lxisoft.crimestopper.domain.Reply;
-import com.lxisoft.crimestopper.repository.ReplyRepository;
-import com.lxisoft.crimestopper.service.ReplyService;
-import com.lxisoft.crimestopper.service.dto.ReplyDTO;
-import com.lxisoft.crimestopper.service.mapper.ReplyMapper;
+import java.util.Optional;
 
 /**
  * Service Implementation for managing Reply.
@@ -42,7 +42,6 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public ReplyDTO save(ReplyDTO replyDTO) {
         log.debug("Request to save Reply : {}", replyDTO);
-
         Reply reply = replyMapper.toEntity(replyDTO);
         reply = replyRepository.save(reply);
         return replyMapper.toDto(reply);

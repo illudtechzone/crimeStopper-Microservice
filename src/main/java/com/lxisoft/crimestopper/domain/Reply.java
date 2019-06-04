@@ -1,5 +1,6 @@
 package com.lxisoft.crimestopper.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -18,13 +19,13 @@ import java.util.Objects;
 public class Reply implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
 
     @Column(name = "no_of_likes")
     private Long noOfLikes;
@@ -47,16 +48,16 @@ public class Reply implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public Reply userId(Long userId) {
+    public Reply userId(String userId) {
         this.userId = userId;
         return this;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -149,7 +150,7 @@ public class Reply implements Serializable {
     public String toString() {
         return "Reply{" +
             "id=" + getId() +
-            ", userId=" + getUserId() +
+            ", userId='" + getUserId() + "'" +
             ", noOfLikes=" + getNoOfLikes() +
             ", noOfDislikes=" + getNoOfDislikes() +
             "}";

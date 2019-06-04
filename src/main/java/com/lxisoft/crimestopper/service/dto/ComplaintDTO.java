@@ -1,13 +1,10 @@
 package com.lxisoft.crimestopper.service.dto;
-
-import java.io.Serializable;
 import java.time.Instant;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-
+import java.util.Objects;
 import javax.persistence.Lob;
-
 import com.lxisoft.crimestopper.domain.enumeration.Status;
 
 /**
@@ -15,12 +12,9 @@ import com.lxisoft.crimestopper.domain.enumeration.Status;
  */
 public class ComplaintDTO implements Serializable {
 
-	
     private Long id;
-    
-    private String userName;
-    
-    private Long userId;
+
+    private String userId;
 
     private String subject;
 
@@ -30,82 +24,26 @@ public class ComplaintDTO implements Serializable {
 
     private Instant timeOfIncident;
 
-    public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	@Lob
+    @Lob
     private byte[] media;
-    
-    private String image;
-    
-    private String mediaContentType;
 
+    private String mediaContentType;
     private Status status;
 
     private Long noOfLikes;
 
     private Long noOfDislikes;
 
-    public LocationDTO getLocation() {
-		return location;
-	}
 
-	public void setLocation(LocationDTO location) {
-		this.location = location;
-	}
-
-	private Long locationId;
-    
-    private LocationDTO location;
-    
-    private UserResponseDTO userResponse;
+    private Long locationId;
 
     private Set<DepartmentDTO> departments = new HashSet<>();
-    
-    private Set<CommentDTO> comments=new HashSet<>();
 
     private Set<ComplaintDTO> linkedComplaints = new HashSet<>();
 
     private Set<HashtagDTO> hashtags = new HashSet<>();
-    
-    public Set<HashtagDTO> getHashtags() {
-		return hashtags;
-	}
 
-	public void setHashtags(Set<HashtagDTO> hashtags) {
-		this.hashtags = hashtags;
-	}
-
-	public Set<CommentDTO> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<CommentDTO> comments) {
-		this.comments = comments;
-	}
-
-	public UserResponseDTO getUserResponse() {
-		return userResponse;
-	}
-
-	public void setUserResponse(UserResponseDTO userResponse) {
-		this.userResponse = userResponse;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -113,11 +51,11 @@ public class ComplaintDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -217,6 +155,14 @@ public class ComplaintDTO implements Serializable {
         this.linkedComplaints = complaints;
     }
 
+    public Set<HashtagDTO> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(Set<HashtagDTO> hashtags) {
+        this.hashtags = hashtags;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -242,7 +188,7 @@ public class ComplaintDTO implements Serializable {
     public String toString() {
         return "ComplaintDTO{" +
             "id=" + getId() +
-            ", userId=" + getUserId() +
+            ", userId='" + getUserId() + "'" +
             ", subject='" + getSubject() + "'" +
             ", description='" + getDescription() + "'" +
             ", time='" + getTime() + "'" +

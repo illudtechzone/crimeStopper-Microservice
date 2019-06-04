@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * A DTO for the Hashtag entity.
  */
-public class HashtagDTO implements Serializable,Comparable<HashtagDTO>{
+public class HashtagDTO implements Serializable {
 
     private Long id;
 
@@ -67,10 +67,4 @@ public class HashtagDTO implements Serializable,Comparable<HashtagDTO>{
             ", count=" + getCount() +
             "}";
     }
-
-	@Override
-	public int compareTo(HashtagDTO o) {
-		Long l=o.getCount()-this.count;
-		return l.intValue();
-	}
 }
